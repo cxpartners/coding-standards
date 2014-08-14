@@ -1,6 +1,5 @@
 ![CX Partners](http://www.cxpartners.co.uk/wp-content/themes/cxpartners/img/logo/cx-logo.png)
 
-***https://github.com/cxpartners/coding-standards/blob/master/README.md***
 # Front-end Coding Standards and Best Practices
 
 a.k.a. *'How to do webdev at cxpartners'*.
@@ -93,7 +92,7 @@ Separate *structure* from *presentation* from *behaviour* to aid maintainability
 
 - Avoid writing CSS or HTML in Javascript
 
-- Don't choose HTML elements to imply style (the HTML5 definition of <b> is essentially presentational)
+- Don't choose HTML elements to imply style
 
 - Where appropriate, use CSS rather than Javascript for animations and transitions
 
@@ -101,7 +100,7 @@ Separate *structure* from *presentation* from *behaviour* to aid maintainability
 
 ### Write code to be read
 
-> Deubgging is twice as hard as writing the code in the first place.  Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. - Brian Kerninghan.
+> Debugging is twice as hard as writing the code in the first place.  Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. - Brian Kerninghan.
 
 Follow the principles of ['Keep It Simple, Stupid'](http://en.wikipedia.org/wiki/KISS_principle) (KISS); hard to read or obfuscated code is difficult to maintain and debug.  Don't be too clever; write code to be read.
 
