@@ -1,6 +1,6 @@
 ![CX Partners](http://www.cxpartners.co.uk/wp-content/themes/cxpartners/img/logo/cx-logo.png)
 
-***
+https://github.com/cxpartners/coding-standards/blob/master/README.md***
 # Front-end Coding Standards and Best Practices
 
 a.k.a. *'How to do webdev at cxpartners'*.
@@ -165,38 +165,38 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 - Use SCSS variables appropriately to ensure you code is kept DRY
 
-```
-// no
-h3 {
-  color: white;
-}
-
-// yes
-$white: #fff;
-
-h3 {
-  color: $white;
-}
-
-```
+    ```
+    // no
+    h3 {
+      color: white;
+    }
+    
+    // yes
+    $white: #fff;
+    
+    h3 {
+      color: $white;
+    }
+    
+    ```
 
 - Each selector and style declaration should be on its own line to help with Git diffs and error reporting.
 
-```
-// good
-h3,
-.gamma,
-%gamma {
-  @include font-size($h3-font-size);
-  line-height: $heading-line-height;
-}
-
-// not so good
-h3, .gamma, %gamma {
-  @include font-size($h3-font-size);
-  line-height: $heading-line-height;
-}
-```
+    ```
+    // good
+    h3,
+    .gamma,
+    %gamma {
+      @include font-size($h3-font-size);
+      line-height: $heading-line-height;
+    }
+    
+    // not so good
+    h3, .gamma, %gamma {
+      @include font-size($h3-font-size);
+      line-height: $heading-line-height;
+    }
+    ```
 
 - Don't specify units for zero values, e.g. `margin: 0;` instead of `margin: 0px;`
 
@@ -212,49 +212,50 @@ h3, .gamma, %gamma {
 
 - Use shorthand properties:
 
-```
-// no
-margin: 1px 1px 1px 1px;
-
-// yes
-margin: 1px;
-```
+    ```
+    // no
+    margin: 1px 1px 1px 1px;
+    
+    // yes
+    margin: 1px;
+    ```
 
 - Write colours in lowercase:
 
-```
-// no
-color: #1AB2C0
+    ```
+    // no
+    color: #1AB2C0
 
-// yes
-color: #1ab2c0
+    // yes
+    color: #1ab2c0
 
-```
+    ```
 
 - Omit protocols from external resources to prevent unintended security warnings through accidentally mixing protocols, and for small file size savings:
 
-```
-// nope
-.main-navigation {
-  background: url(http://d111111abcdef8.cloudfront.net/images/image.jpg);
-}
-
-// yes
-.main-navigation {
-  background: url(//d111111abcdef8.cloudfront.net/images/image.jpg);
-}
-```
-
+    ```
+    // nope
+    .main-navigation {
+      background: url(http://d111111abcdef8.cloudfront.net/images/image.jpg);
+    }
+    
+    // yes
+    .main-navigation {
+      background: url(//d111111abcdef8.cloudfront.net/images/image.jpg);
+    }
+    ```
+    
 ### Depth of applicability
 
 Don't over-specify CSS selectors. Overly specified selectors are difficult to understand and lead to subsequent selectors needing to be of an even higher specificity. (See SMACSS' [depth of applicability](http://smacss.com/book/applicability)):
 
-```
-// nope
-#sidebar div ul > li {
-    margin-bottom: 5px;
-}
-```
+
+    ```
+    // nope
+    #sidebar div ul > li {
+        margin-bottom: 5px;
+    }
+    ```
 
 The above example is tightly coupled to the HTML structure which prevents re-use and is brittle - if the HTML needs changing, then the style will break.
 
@@ -264,21 +265,21 @@ Don't qualify `id`s or classes with tag names.
 
 `id`s are unique, so it is unnecessary to slow down selector matching by including one:
 
-```
-// over qualified id selector
-ul#main-navigation {
-  ...
-}
-```
+    ```
+    // over qualified id selector
+    ul#main-navigation {
+      ...
+    }
+    ```
 
 Classes may be used multiple times in a page, but they are still more unique than a tag:
 
-```
-// over qualified class selector
-table.results {
-  ...
-}
-```
+    ```
+    // over qualified class selector
+    table.results {
+      ... 
+    }
+    ```
 
 You will also be binding site structure with presentation making the site harder to maintain and inhibiting re-use.
 
@@ -302,25 +303,26 @@ Use comments to:
 
 - Divide up groups of declarations.
 
-```
-// =======================================
-//  Major Section
-// =======================================
-
-// ------------------------------
-// Minor section
-
-// Explanation
-```
+    ```
+    // =======================================
+    //  Major Section
+    // =======================================
+    
+    // ------------------------------
+    // Minor section
+    
+    // Explanation
+    ```
+    
 Use multiline comments if you want the comment to be preserved in the compiled CSS.
-
-```
-/* This comment is
- * several lines long.
- * since it uses the CSS comment syntax,
- * it will appear in the CSS output. */
-body { color: black; }
-```
+    
+    ```
+    /* This comment is
+     * several lines long.
+     * since it uses the CSS comment syntax,
+     * it will appear in the CSS output. */
+    body { color: black; }
+    ```
 
 ### REMs
 
@@ -330,11 +332,12 @@ Use `rem`s (relative `em`s) rather than `em` or `px`.
 
 Always precede the `rem` value with a pixel value so that IE6/7/8 is supported.
 
-```
-font-size: 12px;
-font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
-
-```
+    ```
+    font-size: 12px;
+    font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
+    
+    ```
+    
 ***
 
 ## HTML Markup
@@ -354,18 +357,19 @@ humans first and the search bots will follow.
 
 - Although unquoted attributes are supported, always quote attribute values.
 
-```
-<input type=text class=form__field form__field--string /> <!-- uh oh -->
-```
+    ```
+    <input type=text class=form__field form__field--string /> <!-- uh oh -->
+    ```
 
 - Omit protocols from external resources to prevent unintended security warnings through accidentally mixing protocols:
 
+    ```
     <!-- Don't do -->
     <script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>
 
     <!-- Do -->
     <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
-
+    ```
 
 ### Doctype
 
@@ -381,21 +385,23 @@ Any browsers that don't currently support HTML5 will enter this mode and interpr
 
 Ensure the markup you write is relevant and has meaning in the context of the content it is being applied to. Don't use markup to infer style.
 
-    <!-- bad: -->
-    <div class="mainHeading">My Blog</div>
-    <br /><br />
-    ... content ...
-    <br /><br />
+```
+<!-- bad: -->
+<div class="mainHeading">My Blog</div>
+<br /><br />
+... content ...
+<br /><br />
 
-    <!-- bad: -->
-    <h1>I want to draw attention to this as I am important</h1>
-    <h1>and so am I</h1>
+<!-- bad: -->
+<h1>I want to draw attention to this as I am important</h1>
+<h1>and so am I</h1>
 
-    <!-- good: -->
-    <h1>My Blog</h1>
-    <p>
-       ... content ...
-    </p>
+<!-- good: -->
+<h1>My Blog</h1>
+<p>
+   ... content ...
+</p>
+```
 
 ### Input labels
 
@@ -403,12 +409,14 @@ Use `label` tags for `input` fields so that the input element acquires focus whe
 
 When using labels, try to use the wrapping pattern rather than the `for` attribute so we can avoid using  `id`s which may interfere with integration with backend systems:
 
-    <label>Address
-      <input type="text" name="address" />
-    </label>
+```
+<label>Address
+  <input type="text" name="address" />
+</label>
 
-    <label for="address">Address</label>
-    <input type="text" id="address" name="name" />
+<label for="address">Address</label>
+<input type="text" id="address" name="name" />
+```
 
 ### Boolean attributes
 
@@ -442,17 +450,17 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
 - Avoid applying styles with Javascript, preferably add or remove classes.  Keep style in CSS to make it easier to maintain and debug.
 
-```
-//  no good
-<input type="text" style="display:none;" name="address_1" />
-```
+    ```
+    //  no good
+    <input type="text" style="display:none;" name="address_1" />
+    ```
 
 - Use SMACSS `is-*` state rules to apply state to elements, for example `addClass('is-hidden')` `addClass('is-collapsed')`.
 
-```
-//  all good
-<input type="text" class="is-hidden" name="address_1" />
-```
+    ```
+    //  all good
+    <input type="text" class="is-hidden" name="address_1" />
+    ```
 
 - Opt in to using a restricted variant of JavaScript using `use strict` so that errors that should be thrown are.
 
@@ -462,43 +470,43 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
 - When using a third party library, ensure it has `/*!` in the file comment block so that licenses are preserved when the Javascript libraries are minified.
 
-```
-/*!
- * enquire.js v2.1.0 - Awesome Media Queries in JavaScript
- * Copyright (c) 2013 Nick Williams - http://wicky.nillia.ms/enquire.js
- * License: MIT (http://www.opensource.org/licenses/mit-license.php)
- */
-(function(t,i,n){var e=i.matchMedia;"undefined"!=typeof module&&module.export
-/*!
- * jQuery Validation Plugin 1.11.1
- *
- * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
- * http://docs.jquery.com/Plugins/Validation
- *
- * Copyright 2013 Jörn Zaefferer
- * Released under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
- */
-!function(t){t.extend(t.fn,{validate:function(e){if(!this.length)return e
-```
+    ```
+    /*!
+     * enquire.js v2.1.0 - Awesome Media Queries in JavaScript
+     * Copyright (c) 2013 Nick Williams - http://wicky.nillia.ms/enquire.js
+     * License: MIT (http://www.opensource.org/licenses/mit-license.php)
+     */
+    (function(t,i,n){var e=i.matchMedia;"undefined"!=typeof module&&module.export
+    /*!
+     * jQuery Validation Plugin 1.11.1
+     *
+     * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+     * http://docs.jquery.com/Plugins/Validation
+     *
+     * Copyright 2013 Jörn Zaefferer
+     * Released under the MIT license:
+     *   http://www.opensource.org/licenses/mit-license.php
+     */
+    !function(t){t.extend(t.fn,{validate:function(e){if(!this.length)return e
+    ```
 
 - Send data down the wire and theme on the client, rather than sending HTML when making AJAX requests.
 
 - Always use parentheses in blocks to aid readability:
 
-```
-// good...
-while (true) {
-  shuffle();
-}
+    ```
+    // good...
+    while (true) {
+      shuffle();
+    }
 
-// not good...
-while (true)
-  shuffle();
+    // not good...
+    while (true)
+      shuffle();
 
-// also not good...
-while (true) shuffle();
-```
+    // also not good...
+    while (true) shuffle();
+    ```
 
 - Use the `===` comparison operator to avoid having to deal with type coercion complications.
 
@@ -506,20 +514,20 @@ while (true) shuffle();
 
 - Use `event.preventDefault();` instead of `return false;` to prevent default event actions. Returning a boolean value is semantically incorrect when considering the context is an event.
 
-```
-//  returning false doesn't make sense in this context
-$('.myElement').on('click', function(e) {
-  // do stuff
-  return false;
-});
+    ```
+    //  returning false doesn't make sense in this context
+    $('.myElement').on('click', function(e) {
+      // do stuff
+      return false;
+    });
 
-// use preventDefault
-$('.myElement').on('click', function(e) {
-  e.preventDefault();
-  // do stuff
-});
+    // use preventDefault
+    $('.myElement').on('click', function(e) {
+      e.preventDefault();
+      // do stuff
+    });
 
-```
+    ```
 
 ### Don't blindly follow 'patterns'
 
@@ -527,89 +535,88 @@ Although following patterns helps us deal with the spaghetti that is Javascript,
 
 - function scope handling with `that = this` / `self = this` pattern:
 
-```
-// Ohhhh I would do anything for scope, but I won't do that = this - @jaffathecake
-var person = {
-  name: 'Alice',
-  greet: function() {
-    self = this;
-    setTimeout(function() {
-      console.log('Hello ' + self.name); // 'Hello Alice'
-    }, 2000);
-  }
-};
-person.greet();
+    ```
+    // Ohhhh I would do anything for scope, but I won't do that = this - @jaffathecake
+    var person = {
+      name: 'Alice',
+      greet: function() {
+        self = this;
+        setTimeout(function() {
+          console.log('Hello ' + self.name); // 'Hello Alice'
+        }, 2000);
+      }
+    };
+    person.greet();
 
-// better:
-var person = {
-  name: 'Alice',
-  greet: function() {
-    setTimeout(function() {
-      console.log('Hello ' + this.name); // 'Hello Alice'
-    }.bind(this), 2000);
-  }
-};
-person.greet();
+    // better:
+    var person = {
+      name: 'Alice',
+      greet: function() {
+        setTimeout(function() {
+          console.log('Hello ' + this.name); // 'Hello Alice'
+        }.bind(this), 2000);
+      }
+    };
+    person.greet();
 
-// or in jQuery:
-var person = {
-  name: 'Alice',
-  greet: function() {
-    setTimeout($.proxy(function() {
-      console.log('Hello ' + this.name); // 'Hello Alice'
-    }, this), 2000);
-  }
-};
-person.greet();
+    // or in jQuery:
+    var person = {
+      name: 'Alice',
+      greet: function() {
+        setTimeout($.proxy(function() {
+          console.log('Hello ' + this.name); // 'Hello Alice'
+        }, this), 2000);
+      }
+    };
+    person.greet();
 
-```
+    ```
 
 - single var pattern:
 
-```
-// single var pattern:
-var myVar1 = 1,
-    anotherVar2 = 'test',
-    andAnotherVar = true;
+    ```
+    // single var pattern:
+    var myVar1 = 1,
+        anotherVar2 = 'test',
+        andAnotherVar = true;
 
-// is this cool?
-var myVar1 = 1,
-    anotherVar2 = 'test' // oops, Automatic Semicolon Insertion just popped a ; on this...
-    andAnotherVar = true; // is now global
+    // is this cool?
+    var myVar1 = 1,
+        anotherVar2 = 'test' // oops, Automatic Semicolon Insertion just popped a ; on this...
+        andAnotherVar = true; // is now global
 
-// better?
-var a = 1
-  , b = 2
-  , sum = a + b
-  , myobject = {}
-  , i
-  , j;
+    // better?
+    var a = 1
+      , b = 2
+      , sum = a + b
+      , myobject = {}
+      , i
+      , j;
 
-// good old dependable multiple var pattern:
-var myVar = 1;
-var anotherVat2 = 'test';
-var andAnotherVar = true;
+    // good old dependable multiple var pattern:
+    var myVar = 1;
+    var anotherVat2 = 'test';
+    var andAnotherVar = true;
 
-```
+    ```
 ### Avoid excessive function arguments
 
 If a function requires more than three arguments, considering refactoring to use a configuration object:
 
 ```
 // bad
-var myFunction1 = function(arg1, arg2, arg3, arg4) {
-}
-myFunction1('firstArgument', argument2, true, 'My Third Argument');
+var myFunction1 = function(arg1, arg2, arg3, arg4) {}
 
+myFunction1('firstArgument', argument2, true, 'My Third Argument');
+    
 // good
-var myFunction2 = function(config) {
-}
+var myFunction2 = function(config) {}
 
 myFunction2({
-     arg1: 'firstArgument',
-     arg2: argument2
-     arg3: true,
-     arg4: 'My Third Argument'
+  arg1: 'firstArgument',
+  arg2: argument2
+  arg3: true,
+  arg4: 'My Third Argument'
 })
 ```
 
@@ -649,7 +656,6 @@ $(window).bind('resize.myPlugin', function(e) {
 });
 
 $(window).unbind('resize.myPlugin');
-
 ```
 
 ### Commenting
@@ -658,44 +664,44 @@ Comment your code.  There are two reasons why you should comment:
 
 - Inline comments explain design or architectural decisions that cannot be conveyed in code alone.  These are mainly for the benefit of other developers modifying, extending or debugging the code, but also for you - you may return to the code a week later and wonder how it works.
 
-```
-/*
- * I am a nicely formatted comment
- */
+    ```
+    /*
+     * I am a nicely formatted comment
+     */
 
-// I am a nicely formatted brief one-line comment
+    // I am a nicely formatted brief one-line comment
 
-for ( var i=0; i<10; i++); // uh-oh don't put comments at the end of lines
+    for ( var i=0; i<10; i++); // uh-oh don't put comments at the end of lines
 
-/* ===================================================
- * uh-oh don't make up your own comment format
- * ==================================================*/
+    /* ===================================================
+     * uh-oh don't make up your own comment format
+     * ==================================================*/
 
-//  This is a long comment
-//  that shouldn't really
-//  be using the one-line
-//  comment syntax.
+    //  This is a long comment
+    //  that shouldn't really
+    //  be using the one-line
+    //  comment syntax.
 
-```
+    ```
 
 - For API documentation for users who want to use your libraries / plugins etc., without reading the code.  Use JSDoc standards to comment files and functions:
 
-```
-/**
- * @file A jQuery UI Widget to build product swatches
- * @author Joel Mitchell
- * @name $.cx.productSwatch
- * @dependencies: jQuery, jQuery UI widget factory (mockjax for testing)
- */
-```
+    ```
+    /**
+     * @file A jQuery UI Widget to build product swatches
+     * @author Joel Mitchell
+     * @name $.cx.productSwatch
+     * @dependencies: jQuery, jQuery UI widget factory (mockjax for testing)
+     */
+    ```
 
-```
-/**
- * Event handler to close the menu
- * @param {Event} e jQuery event object
- */
-var myFunction = function(e) {};
-```
+    ```
+    /**
+     * Event handler to close the menu
+     * @param {Event} e jQuery event object
+     */
+    var myFunction = function(e) {};
+    ```
 
 ### Localisation
 
@@ -703,56 +709,56 @@ Even if the project doesn't require it at the point at which you are working on 
 
 - wrapped in a localisation function:
 
-```
-// localisation function
-_t('Click me')
+    ```
+    // localisation function
+    _t('Click me')
 
-/**
- * Future proofing
- */
-function _t(str) {
-  return str;
-}
-
-// some time in the future...
-function _t(str) {
-  var languages = {
-    "fr": {
-      'Click me' => 'cliquez sur moi'
+    /**
+     * Future proofing
+     */
+    function _t(str) {
+      return str;
     }
-  };
 
-  return language[currentLanguage][str];
-}
+    // some time in the future...
+    function _t(str) {
+      var languages = {
+        "fr": {
+          'Click me' => 'cliquez sur moi'
+        }
+      };
 
-```
+      return language[currentLanguage][str];
+    }
+
+    ```
 
 - or defined in a configuration object:
 
-```
-$.widget('formToggle', {
+    ```
+    $.widget('formToggle', {
 
-  options: {
-    'btnLabel': 'Click Me'
-  };
+      options: {
+        'btnLabel': 'Click Me'
+      };
 
-  ...
+      ...
 
-  _create: function() {
-    $('.button').val(this.options.btnLabel);
-  }
+      _create: function() {
+        $('.button').val(this.options.btnLabel);
+      }
 
-  ...
+      ...
 
-})(jQuery);
+    })(jQuery);
 
-...
+    ...
+    
+    $('form').formToggle({
+      'btnLabel': 'cliquez sur moi' // i'm French now.
+    });
 
-$('form').formToggle({
-  'btnLabel': 'cliquez sur moi' // i'm French now.
-});
-
-```
+    ```
 
 ### Plugin Development
 
