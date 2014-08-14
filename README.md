@@ -537,7 +537,7 @@ Although following patterns helps us deal with the spaghetti that is Javascript,
     var person = {
       name: 'Alice',
       greet: function() {
-        self = this;
+        var self = this;
         setTimeout(function() {
           console.log('Hello ' + self.name); // 'Hello Alice'
         }, 2000);
