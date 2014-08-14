@@ -1,6 +1,6 @@
 ![CX Partners](http://www.cxpartners.co.uk/wp-content/themes/cxpartners/img/logo/cx-logo.png)
 
-https://github.com/cxpartners/coding-standards/blob/master/README.md***
+***https://github.com/cxpartners/coding-standards/blob/master/README.md***
 # Front-end Coding Standards and Best Practices
 
 a.k.a. *'How to do webdev at cxpartners'*.
@@ -249,13 +249,12 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 Don't over-specify CSS selectors. Overly specified selectors are difficult to understand and lead to subsequent selectors needing to be of an even higher specificity. (See SMACSS' [depth of applicability](http://smacss.com/book/applicability)):
 
-
-    ```
-    // nope
-    #sidebar div ul > li {
-        margin-bottom: 5px;
-    }
-    ```
+```
+// nope
+#sidebar div ul > li {
+  margin-bottom: 5px;
+}
+```
 
 The above example is tightly coupled to the HTML structure which prevents re-use and is brittle - if the HTML needs changing, then the style will break.
 
@@ -265,21 +264,21 @@ Don't qualify `id`s or classes with tag names.
 
 `id`s are unique, so it is unnecessary to slow down selector matching by including one:
 
-    ```
-    // over qualified id selector
-    ul#main-navigation {
-      ...
-    }
-    ```
+```
+// over qualified id selector
+ul#main-navigation {
+  ...
+}
+```
 
 Classes may be used multiple times in a page, but they are still more unique than a tag:
 
-    ```
-    // over qualified class selector
-    table.results {
-      ... 
-    }
-    ```
+```
+// over qualified class selector
+table.results {
+  ... 
+}
+```
 
 You will also be binding site structure with presentation making the site harder to maintain and inhibiting re-use.
 
@@ -316,13 +315,13 @@ Use comments to:
     
 Use multiline comments if you want the comment to be preserved in the compiled CSS.
     
-    ```
-    /* This comment is
-     * several lines long.
-     * since it uses the CSS comment syntax,
-     * it will appear in the CSS output. */
-    body { color: black; }
-    ```
+```
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body { color: black; }
+```
 
 ### REMs
 
@@ -332,11 +331,10 @@ Use `rem`s (relative `em`s) rather than `em` or `px`.
 
 Always precede the `rem` value with a pixel value so that IE6/7/8 is supported.
 
-    ```
-    font-size: 12px;
-    font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
-    
-    ```
+```
+font-size: 12px;
+font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
+```
     
 ***
 
@@ -599,6 +597,7 @@ Although following patterns helps us deal with the spaghetti that is Javascript,
     var andAnotherVar = true;
 
     ```
+    
 ### Avoid excessive function arguments
 
 If a function requires more than three arguments, considering refactoring to use a configuration object:
