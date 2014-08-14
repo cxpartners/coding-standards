@@ -261,25 +261,19 @@ The above example is tightly coupled to the HTML structure which prevents re-use
 
 Don't qualify `id`s or classes with tag names.
 
-`id`s are unique, so it is unnecessary to slow down selector matching by including one:
-
 ```
 // over qualified id selector
 ul#main-navigation {
   ...
 }
-```
 
-Classes may be used multiple times in a page, but they are still more unique than a tag:
-
-```
 // over qualified class selector
 table.results {
   ... 
 }
 ```
 
-You will also be binding site structure with presentation making the site harder to maintain and inhibiting re-use.
+Asa above, you will be binding site structure with presentation making the site harder to maintain and inhibit re-use.
 
 ### High performance CSS
 
