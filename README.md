@@ -273,7 +273,7 @@ table.results {
 }
 ```
 
-Asa above, you will be binding site structure with presentation making the site harder to maintain and inhibit re-use.
+As above, you will be binding site structure with presentation making the site harder to maintain and inhibit re-use.
 
 ### High performance CSS
 
@@ -333,10 +333,9 @@ font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
 
 ## HTML Markup
 
-Use well-structured and appropriate semantic markup. Make content accessible for
-humans first and the search bots will follow.
-
 ### General Guidelines
+
+- Use well-structured, semantic markup.
 
 - Use double quotes on all attributes.
 
