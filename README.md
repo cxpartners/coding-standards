@@ -154,7 +154,7 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 - Use classes rather than element selectors to de-couple CSS from HTML semantics and ensure that your code doesn't impact how it may be integrated into backend systems
 
-- Make layouts fluid, using variable units of measurement 
+- Make layouts fluid, using variable units of measurement
 
 - Use `id` selectors only when explicitly required – they prohibit re-use, and may need to be re-written during systems integration
 
@@ -169,14 +169,14 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
     h3 {
       color: white;
     }
-    
+
     // yes
     $white: #fff;
-    
+
     h3 {
       color: $white;
     }
-    
+
     ```
 
 - Each selector and style declaration should be on its own line to help with Git diffs and error reporting.
@@ -189,7 +189,7 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
       @include font-size($h3-font-size);
       line-height: $heading-line-height;
     }
-    
+
     // not so good
     h3, .gamma, %gamma {
       @include font-size($h3-font-size);
@@ -201,7 +201,7 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 - Use `0` instead of `none`, e.g. `border: 0;` rather than `border: none;`.
 
-- If you need to use vendor prefixes then you'll probably need to use or create a mixin.
+- If you use experimental properties that will require prefixing, it is recommended to use Autoprefixer to post-process the CSS. Autoprefixer can be combined with usage data from [caniuse](caniuse.com) to only output relevant prefixes (e.g., unless you're supporting really early versions of Chrome, you don't need `-webkit-border-radius`), which takes a lot of work out of manual prefixing, and is more intelligent than mixins and libraries.
 
 - Wherever possible, specific page-level styling should be avoided in favour of layout or component modifiers.
 
@@ -212,7 +212,7 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
     ```
     // no
     margin: 1px 1px 1px 1px;
-    
+
     // yes
     margin: 1px;
     ```
@@ -235,13 +235,13 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
     .main-navigation {
       background: url(http://d111111abcdef8.cloudfront.net/images/image.jpg);
     }
-    
+
     // yes
     .main-navigation {
       background: url(//d111111abcdef8.cloudfront.net/images/image.jpg);
     }
     ```
-    
+
 ### Depth of applicability
 
 Don't over-specify CSS selectors. Overly specified selectors are difficult to understand and lead to subsequent selectors needing to be of an even higher specificity. (See SMACSS' [depth of applicability](http://smacss.com/book/applicability)):
@@ -267,7 +267,7 @@ ul#main-navigation {
 
 // over qualified class selector
 table.results {
-  ... 
+  ...
 }
 ```
 
@@ -297,15 +297,15 @@ Use comments to:
     // =======================================
     //  Major Section
     // =======================================
-    
+
     // ------------------------------
     // Minor section
-    
+
     // Explanation
     ```
-    
+
 Use multiline comments if you want the comment to be preserved in the compiled CSS.
-    
+
 ```
 /* This comment is
  * several lines long.
@@ -326,7 +326,7 @@ Always precede the `rem` value with a pixel value so that IE6/7/8 is supported.
 font-size: 12px;
 font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
 ```
-    
+
 ***
 
 ## HTML Markup
@@ -587,7 +587,7 @@ Although following patterns helps us deal with the spaghetti that is Javascript,
     var andAnotherVar = true;
 
     ```
-    
+
 ### Avoid excessive function arguments
 
 If a function requires more than three arguments, considering refactoring to use a configuration object:
@@ -597,7 +597,7 @@ If a function requires more than three arguments, considering refactoring to use
 var myFunction1 = function(arg1, arg2, arg3, arg4) {}
 
 myFunction1('firstArgument', argument2, true, 'My Third Argument');
-    
+
 // good
 var myFunction2 = function(config) {}
 
@@ -742,7 +742,7 @@ Even if the project doesn't require it at the point at which you are working on 
     })(jQuery);
 
     ...
-    
+
     $('form').formToggle({
       'btnLabel': 'cliquez sur moi' // i'm French now.
     });
