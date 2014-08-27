@@ -201,9 +201,9 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 - Use `0` instead of `none`, e.g. `border: 0;` rather than `border: none;`.
 
-- SASS converts underscores to hyphens when it compiles to CSS. Therefore use hyphens not underscores in SCSS variables, e.g. `size_in_px` should be `size-in-px` to avoid problems.
-
 - If you use experimental properties that will require prefixing, it is recommended to use Autoprefixer to post-process the CSS. Autoprefixer can be combined with usage data from [caniuse](caniuse.com) to only output relevant prefixes (e.g., unless you're supporting really early versions of Chrome, you don't need `-webkit-border-radius`), which takes a lot of work out of manual prefixing, and is more intelligent than mixins and libraries.
+
+- If you need to use vendor prefixes then you'll probably need to use or create a mixin.
 
 - Wherever possible, specific page-level styling should be avoided in favour of layout or component modifiers.
 
