@@ -203,8 +203,6 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
 
 - If you use experimental properties that will require prefixing, it is recommended to use Autoprefixer to post-process the CSS. Autoprefixer can be combined with usage data from [caniuse](caniuse.com) to only output relevant prefixes (e.g., unless you're supporting really early versions of Chrome, you don't need `-webkit-border-radius`), which takes a lot of work out of manual prefixing, and is more intelligent than mixins and libraries.
 
-- If you need to use vendor prefixes then you'll probably need to use or create a mixin.
-
 - Wherever possible, specific page-level styling should be avoided in favour of layout or component modifiers.
 
 - Avoid inline CSS.
