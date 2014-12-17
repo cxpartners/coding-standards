@@ -368,7 +368,6 @@ Use pixels to specify the following properties unless percentages make sense, (b
 .box {
   margin-bottom: 6.33%; // converted from pixels on the mockup based on box height
 }
-
 ```
 
 Use `box-sizing: border-box` globally. This makes dealing with multiple units in this fashion a lot nicer.
