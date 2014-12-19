@@ -38,7 +38,7 @@ There are some general things we can do in front-end development:
 
 - Avoid unnecessary use of `display: none;`
 
-- Keep CSS selectors concise (be wary of SASS nesting), and avoid slow selectors
+- Keep CSS selectors concise (be wary of SASS nesting)
 
 - Minimise HTTP requests
 
@@ -280,18 +280,6 @@ table.results {
 ```
 
 As above, you will be binding site structure with presentation making the site harder to maintain and inhibit re-use.
-
-### High performance CSS
-
-Understand that selectors have varying levels of efficiency - avoid slow selectors, e.g.:
-
-- the universal attribute `*`
-
-- attribute selectors, e.g. `[class="ico-button"]`
-
-- regular expression attribute selectors, e.g. `[class^="ico-"]`
-
-CSS3's pseudo selectors e.g. `:first-child` allow us to make markup cleaner, but the payoff is performance. A careful balance needs to be made between promoting HTML semantics at the cost of browser rendering times.
 
 ### Commenting
 
