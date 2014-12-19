@@ -327,32 +327,25 @@ Use percentages for fluid layouts and components.
 
 Use pixels to specify the following properties unless percentages make sense, (but above, exercise good judgement). `margin`, `padding`, `top`, `left`, `bottom`, `right`.
 
-#### This makes sense:
 ```
+//  This makes sense
 .dropdown-toggle:hover > .dropdown-menu {
   display: block;
   top: 100%; // display just below dropdown-toggle
 }
-```
 
-#### This doesn't ([magic number alert!](http://csswizardry.com/2012/11/code-smells-in-css/#magic-numbers)):
-```
-
+//  This doesn't (magic number alert! - http://csswizardry.com/2012/11/code-smells-in-css/#magic-numbers)
 .dropdown-toggle:hover > .dropdown-menu {
   display: block;
   top: 62px; // height of dropdown-toggle at present
 }
-```
 
-#### This makes sense:
-```
+// This makes sense
 .box {
   margin-bottom: 20px;
 }
-```
 
-#### This doesn't:
-```
+//  This doesn't:
 .box {
   margin-bottom: 6.33%; // converted from pixels on the mockup based on box height
 }
