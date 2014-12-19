@@ -324,7 +324,7 @@ body { color: black; }
 
 ### Unit sizing
 
-Use `em`s to size fonts. These will take into account the user's font size setting ([this research 2006 suggests around 10% of people have changed it](http://archive.oreilly.com/pub/post/more_statistics_on_user_clicks.html)). However, `em`s in font sizes inherit the font size of their parent, so be careful with cascading. If you anticipate needing to size an element or a class inside another element or class that is sized with `em`s (e.g. a `<small>` inside an `<h2>`), and this doesn't cascade nicely, consider using `rem`s, but make sure you always include a pixel fallback for browsers that does not support the `rem` unit.
+Use `em`s to size fonts. These will take into account the user's font size setting ([this research from 2006 suggests around 10% of people have changed it](http://archive.oreilly.com/pub/post/more_statistics_on_user_clicks.html)). However, `em`s in font sizes inherit the font size of their parent, so be careful with cascading. If you anticipate needing to size an element or a class inside another element or class that is sized with `em`s (e.g. a `<small>` inside an `<h2>`), and this doesn't cascade nicely, consider using `rem`s, but make sure you always include a pixel fallback for browsers that does not support the `rem` unit.
 
 ```
 font-size: 12px;
