@@ -319,7 +319,7 @@ font-size: 12px;
 font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
 ```
 
-Never change the font size of the root element from its default of 100%, which equates to 16px in browsers. This means avoid the `font-size: 62.5%` hack to ensure that a `(r)em` unit equates to 10px. More elements are 16px than 10px, so we'll have to specify the sizes of fewer things. This is where the cascade excels.
+Avoid the `font-size: 62.5%` hack to ensure that a `(r)em` unit equates to 10px. Never change the font size of the root element from its default of 100%/16px. Far more elements are 16px than 10px, so this way we have to specify the sizes of fewer things. This is where the cascade excels.
 
 Use unitless line-heights.
 
