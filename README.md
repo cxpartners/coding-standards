@@ -319,13 +319,13 @@ font-size: 12px;
 font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
 ```
 
-Never change the font size of the root element from its default of 100%, which by default equates to 16px. This means avoid the `font-size: 62.5%` hack to ensure that a `(r)em` unit equates to 10px. More elements are 16px than 10px, so we'll have to specify the sizes of fewer things. This is where the cascade excels.
+Never change the font size of the root element from its default of 100%, which equates to 16px in browsers. This means avoid the `font-size: 62.5%` hack to ensure that a `(r)em` unit equates to 10px. More elements are 16px than 10px, so we'll have to specify the sizes of fewer things. This is where the cascade excels.
 
 Use unitless line-heights.
 
 Use percentages for fluid layouts and components.
 
-Use pixels to specify the following properties unless percentages make sense, (but above, exercise good judgement). `margin`, `padding`, `top`, `left`, `bottom`, `right`.
+Use pixels to specify the following properties unless percentages make sense (but as above, exercise good judgement): `margin`, `padding`, `top`, `left`, `bottom`, `right`.
 
 ```
 //  This makes sense
