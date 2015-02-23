@@ -290,10 +290,18 @@ Use comments to:
 - Divide up groups of declarations using standard block and single line comment formats. (_If you have too many major sections in your partial, perhaps it should be more than one partial!_)
 
     ```
+    /*
+     * This is a "block" comment carrying a bit more weight
+     * Maybe it has multiple lines
+     * It often announces a new section of some kind
+     */
+    
     /**
      * This is a "block" comment carrying a bit more weight
      * Maybe it has multiple lines
-     * It normally announces a new section of some kind
+     * It often announces a new section, perhaps a function
+     * This can be used in JS to denote a JSDoc block
+     * @see http://usejsdoc.org/about-getting-started.html#adding-documentation-comments-to-your-code
      */
 
     // Single line explanation of something
