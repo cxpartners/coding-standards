@@ -287,17 +287,24 @@ Use comments to:
 
 - Explain design or architectural decisions, to make notes so that any developers modifying, extending or debugging the code can do so understanding your original decisions.
 
-- Divide up groups of declarations.
+- Divide up groups of declarations using standard block and single line comment formats. (_If you have too many major sections in your partial, perhaps it should be more than one partial!_)
 
     ```
-    // =======================================
-    //  Major Section
-    // =======================================
+    /*
+     * This is a "block" comment carrying a bit more weight
+     * Maybe it has multiple lines
+     * It often announces a new section of some kind
+     */
+    
+    /**
+     * This is a "block" comment carrying a bit more weight
+     * Maybe it has multiple lines
+     * It often announces a new section, perhaps a function
+     * This can be used in JS to denote a JSDoc block
+     * @see http://usejsdoc.org/about-getting-started.html#adding-documentation-comments-to-your-code
+     */
 
-    // ------------------------------
-    // Minor section
-
-    // Explanation
+    // Single line explanation of something
     ```
 
 Use multiline comments if you want the comment to be preserved in the compiled CSS.
@@ -680,7 +687,7 @@ Comment your code.  There are two reasons why you should comment:
 - Inline comments explain design or architectural decisions that cannot be conveyed in code alone.  These are mainly for the benefit of other developers modifying, extending or debugging the code, but also for you - you may return to the code a week later and wonder how it works.
 
     ```
-    /*
+    /**
      * I am a nicely formatted comment
      */
 
