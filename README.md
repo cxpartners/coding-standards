@@ -250,6 +250,43 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
     }
     ```
 
+- Use whitespace to aid readability. Anything which modifies the context such as a selector or a media query should be preceded with a blank line.
+
+  ```
+  // bad
+  .foo {
+    color: blue;
+    @media screen and (min-width: 1000px) { 
+      color: yellow;
+    }
+    .bar {
+      color: red;
+      @media screen and (min-width: 1000px) { 
+        color: green;
+      }
+    }    
+  }
+  ```
+
+  ```
+  // good
+  .foo {
+    color: blue;
+
+    @media screen and (min-width: 1000px) { 
+      color: yellow;
+    }
+
+    .bar {
+      color: red;
+
+      @media screen and (min-width: 1000px) { 
+        color: green;
+      }
+    }
+  }
+  ```
+
 ### Depth of applicability
 
 Don't over-specify CSS selectors. Overly specified selectors are difficult to understand and lead to subsequent selectors needing to be of an even higher specificity. (See SMACSS' [depth of applicability](http://smacss.com/book/applicability)):
