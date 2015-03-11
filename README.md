@@ -568,7 +568,19 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
 - Use the `===` comparison operator to avoid having to deal with type coercion complications.
 
-- Use quotation marks consistently, e.g. only use single or double quotes throughout your code, don't mix.
+- Use quotation marks consistently, e.g. only use single or double quotes throughout your code, don't mix. Unless there is a valid reason not to, prefer single quotes such that HTML contained therein does not need to be escaped. For example:
+
+      ```
+    // good...
+    var foo = 'Just a normal string';
+
+    // good...
+    var foo = '<a href="/bar">Nice clean HTML string</a>';
+
+    // not good...
+    var foo = "<a href=\"/bar\">HTML string with escaped double quotes</a>";
+
+    ```
 
 - Use `event.preventDefault();` instead of `return false;` to prevent default event actions. Returning a boolean value is semantically incorrect when considering the context is an event.
 
