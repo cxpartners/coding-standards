@@ -12,7 +12,7 @@
   "nonew": true,
   "quotmark": true,
   "undef": true,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "trailing": true,
   "expr": true,
