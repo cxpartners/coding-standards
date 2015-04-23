@@ -12,8 +12,8 @@
   "nonew": true,
   "quotmark": true,
   "undef": true,
-  "unused": false,
-  "strict": false,
+  "unused": true,
+  "strict": true,
   "trailing": true,
   "expr": true,
   "globals": {
