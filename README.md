@@ -1,4 +1,4 @@
-![CX Partners](http://www.cxpartners.co.uk/wp-content/themes/cxpartners/img/logo/cx-logo.png)
+![CX Partners](https://www.cxpartners.co.uk/ui/img/logo.png)
 
 # Front-end Coding Standards and Best Practices
 
