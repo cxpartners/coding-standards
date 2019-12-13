@@ -602,7 +602,7 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
     ```
 
-### Don't use `var` any more - we have `const` and `let` which Babel will compile as necessary. Favour `const` over `let` in ES6. In JavaScript, `const` means that the identifier can’t be reassigned. `let` is a signal that the variable may be reassigned, it also signals that the variable will be used only in the block it’s defined in.
+- Don't use `var` any more - we have `const` and `let` which Babel will compile as necessary. Favour `const` over `let` in ES6. In JavaScript, `const` means that the identifier can’t be reassigned. `let` is a signal that the variable may be reassigned, it also signals that the variable will be used only in the block it’s defined in.
 
 - single let pattern:
 
