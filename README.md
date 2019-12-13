@@ -255,14 +255,14 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
   ```
   // bad
   .foo {
-    color: blue;
+    color: $blue;
     @media screen and (min-width: 1000px) { 
-      color: yellow;
+      color: $yellow;
     }
     .bar {
-      color: red;
+      color: $red;
       @media screen and (min-width: 1000px) { 
-        color: green;
+        color: $green;
       }
     }    
   }
@@ -271,17 +271,17 @@ Our approach to CSS is influenced by Nicole Sullivan's [OOCSS](http://oocss.org/
   ```
   // good
   .foo {
-    color: blue;
+    color: $blue;
 
     @media screen and (min-width: 1000px) { 
-      color: yellow;
+      color: $yellow;
     }
 
     .bar {
-      color: red;
+      color: $red;
 
       @media screen and (min-width: 1000px) { 
-        color: green;
+        color: $green;
       }
     }
   }
@@ -317,6 +317,8 @@ table.results {
 ```
 
 As above, you will be binding site structure with presentation making the site harder to maintain and inhibit re-use.
+
+While we are at it, there is a case for reusing patterns of naming for things. 
 
 ### Commenting
 
@@ -356,20 +358,16 @@ body { color: black; }
 
 ### Unit sizing
 
-Use `em`s to size fonts. These will take into account the user's font size setting ([this research from 2006 suggests around 10% of people have changed it](http://archive.oreilly.com/pub/post/more_statistics_on_user_clicks.html)). However, `em`s in font sizes inherit the font size of their parent, so be careful with cascading. If you anticipate needing to size an element or a class inside another element or class that is sized with `em`s (e.g. a `<small>` inside an `<h2>`), and this doesn't cascade nicely, consider using `rem`s, but make sure you always include a pixel fallback for browsers that does not support the `rem` unit.
+Use `rem`s to size fonts. These will take into account the user's font size setting ([this research from 2006 suggests around 10% of people have changed it](http://archive.oreilly.com/pub/post/more_statistics_on_user_clicks.html)). 
 
-```
-font-size: 12px;
-font-size: 1.2rem; /* This line is ignored by IE6, 7 & 8 */
-```
 
 Avoid the `font-size: 62.5%` hack to ensure that a `(r)em` unit equates to 10px. Never change the font size of the root element from its default of 100%/16px. Far more elements are 16px than 10px, so this way we have to specify the sizes of fewer things. This is where the cascade excels.
 
 Use unitless line-heights.
 
-Use percentages for fluid layouts and components.
+If not using flexbox or css columns / grids, use percentages for fluid layouts and components.
 
-Use pixels to specify the following properties unless percentages make sense (but as above, exercise good judgement): `margin`, `padding`, `top`, `left`, `bottom`, `right`.
+Use `ems` or `pixels` to specify the following properties unless percentages make sense (but as above, exercise good judgement): `margin`, `padding`, `top`, `left`, `bottom`, `right`.
 
 ```
 //  This makes sense
@@ -385,8 +383,9 @@ Use pixels to specify the following properties unless percentages make sense (bu
 }
 
 // This makes sense
+// the inherited margin will take into account the font-size to ensure it looks 'right'
 .box {
-  margin-bottom: 20px;
+  margin-bottom: 3em;
 }
 
 //  This doesn't:
@@ -395,7 +394,7 @@ Use pixels to specify the following properties unless percentages make sense (bu
 }
 ```
 
-Use `box-sizing: border-box` globally. This makes dealing with multiple units in this fashion a lot nicer.
+Use `box-sizing: border-box` globally. This makes dealing with multiple units in this fashion a lot nicer
 
 ***
 
@@ -405,7 +404,7 @@ Use `box-sizing: border-box` globally. This makes dealing with multiple units in
 
 - Use well-structured, semantic markup.
 
-- Use double quotes on all attributes.
+- Use double quotes on all attributes. When using React.js for generating markup, we rely on single quotes.
 
 - Use soft tabs, 2 space indents.
 
@@ -437,6 +436,14 @@ Any browsers that don't currently support HTML5 will enter this mode and interpr
 
 ```
 <!DOCTYPE html>
+```
+
+### HTML tag 
+
+Add a `lang` attribute to set the default language. The lang attribute takes an ISO language code as its value. Typically this is a two letter code such as "en" for English, but it can also be an extended code such as "en-gb" for British English
+
+```
+<html lang="en">
 ```
 
 ### Write semantic markup
@@ -494,30 +501,48 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
 ## Behaviour & JS
 
-*Note: We use jQuery heavily in our projects, and so many examples are written as jQuery.*
-
 ### General guidelines
+
+- We use React.js - jQuery has been superceded. Also, we prefer to make universal / isomorphic React applications
+
+- Use ES6 - Babel will transpile it.
 
 - Use soft-tabs with a two space indent.
 
 - Never use `eval`.
 
-- All projects will contain a `.jshintrc` file in the root.  This will define the expected coding standards for the project, enforced by JSHint.
+- All projects will contain a `.jshintrc` file in the root.  This will define the expected coding standards for the project, enforced by JSHint. We are tending towards using the AirBnB preconfigured linting - `npm install --save-dev eslint-config-airbnb` and extend your .eslintrc file:
 
-- Don't use CoffeeScript - it's an abstraction too far.  Javascript is far from a perfect language, but learn how to deal with the issues of Javascript using recognised and accepted patterns and adhere to best practice guidelines.
+```
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": "airbnb",
+    "rules": {
+        "indent": [2, "tab"]
+    }
+}
+```
+
+- Don't use CoffeeScript - it's an abstraction too far. Javascript is far from a perfect language, but learn how to deal with the issues of Javascript using recognised and accepted patterns and adhere to best practice guidelines.
+
+- Typescript: totally open to being persuaded. Lots of people are drinking the Koolaid, present a business case.  
 
 - Avoid applying styles with Javascript, preferably add or remove classes.  Keep style in CSS to make it easier to maintain and debug.
 
     ```
     //  no good
-    <input type="text" style="display:none;" name="address_1" />
+    <span style="display:none;" name="address_1">Icon label text</span>
     ```
 
-- Use SMACSS `is-*` state rules to apply state to elements, for example `addClass('is-hidden')` `addClass('is-collapsed')`.
+- Use `is-*` or `has-*` state rules to apply state to elements, for example `class='is-visually-hidden'` `class='has-icon'`.
 
     ```
     //  all good
-    <input type="text" class="is-hidden" name="address_1" />
+    <span class="is-visually-hidden has-icon">Icon label text</span>
     ```
 
 - Opt in to using a restricted variant of JavaScript using `use strict` so that errors that should be thrown are.
@@ -526,28 +551,6 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
 - Don't recreate functionality that may already be present in a utility library that is already in use.
 
-- When using a third party library, ensure it has `/*!` in the file comment block so that licenses are preserved when the Javascript libraries are minified.
-
-    ```
-    /*!
-     * enquire.js v2.1.0 - Awesome Media Queries in JavaScript
-     * Copyright (c) 2013 Nick Williams - http://wicky.nillia.ms/enquire.js
-     * License: MIT (http://www.opensource.org/licenses/mit-license.php)
-     */
-    (function(t,i,n){var e=i.matchMedia;"undefined"!=typeof module&&module.export
-    /*!
-     * jQuery Validation Plugin 1.11.1
-     *
-     * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
-     * http://docs.jquery.com/Plugins/Validation
-     *
-     * Copyright 2013 Jörn Zaefferer
-     * Released under the MIT license:
-     *   http://www.opensource.org/licenses/mit-license.php
-     */
-    !function(t){t.extend(t.fn,{validate:function(e){if(!this.length)return e
-    ```
-
 - Send data down the wire and theme on the client, rather than sending HTML when making AJAX requests.
 
 - Always use parentheses in blocks to aid readability:
@@ -555,15 +558,15 @@ The presence of the attribute itself implies that the value is "true", an absenc
     ```
     // good...
     while (true) {
-      shuffle();
+      shuffle()
     }
 
     // not good...
     while (true)
-      shuffle();
+      shuffle()
 
     // also not good...
-    while (true) shuffle();
+    while (true) shuffle()
     ```
 
 - Use the `===` comparison operator to avoid having to deal with type coercion complications.
@@ -572,103 +575,64 @@ The presence of the attribute itself implies that the value is "true", an absenc
 
       ```
     // good...
-    var foo = 'Just a normal string';
+    const foo = 'Just a normal string'
 
     // good...
-    var foo = '<a href="/bar">Nice clean HTML string</a>';
+    const foo = '<a href="/bar">Nice clean HTML string</a>'
 
     // not good...
-    var foo = "<a href=\"/bar\">HTML string with escaped double quotes</a>";
+    const foo = "<a href=\"/bar\">HTML string with escaped double quotes</a>"
 
     ```
 
-- Use `event.preventDefault();` instead of `return false;` to prevent default event actions. Returning a boolean value is semantically incorrect when considering the context is an event.
+- Use `event.preventDefault()` instead of `return false` to prevent default event actions. Returning a boolean value is semantically incorrect when considering the context is an event.
 
     ```
     //  returning false doesn't make sense in this context
-    $('.myElement').on('click', function(e) {
+    htmlElement.addEventListener('click', (e) => {
       // do stuff
-      return false;
-    });
+      return false
+    })
 
     // use preventDefault
-    $('.myElement').on('click', function(e) {
-      e.preventDefault();
+    htmlElement.addEventListener('click', (e) => {
+      e.preventDefault()
       // do stuff
-    });
+    })
 
     ```
 
-### Don't blindly follow 'patterns'
+### Don't use `var` any more - we have `const` and `let` which Babel will compile as necessary. Favour `const` over `let` in ES6. In JavaScript, `const` means that the identifier can’t be reassigned. `let` is a signal that the variable may be reassigned, it also signals that the variable will be used only in the block it’s defined in.
 
-Although following patterns helps us deal with the spaghetti that is Javascript, some patterns become anti-patterns after time:
-
-- function scope handling with `that = this` / `self = this` pattern:
+- single let pattern:
 
     ```
-    // Ohhhh I would do anything for scope, but I won't do that = this - @jaffathecake
-    var person = {
-      name: 'Alice',
-      greet: function() {
-        var self = this;
-        setTimeout(function() {
-          console.log('Hello ' + self.name); // 'Hello Alice'
-        }, 2000);
-      }
-    };
-    person.greet();
-
-    // better:
-    var person = {
-      name: 'Alice',
-      greet: function() {
-        setTimeout(function() {
-          console.log('Hello ' + this.name); // 'Hello Alice'
-        }.bind(this), 2000);
-      }
-    };
-    person.greet();
-
-    // or in jQuery:
-    var person = {
-      name: 'Alice',
-      greet: function() {
-        setTimeout($.proxy(function() {
-          console.log('Hello ' + this.name); // 'Hello Alice'
-        }, this), 2000);
-      }
-    };
-    person.greet();
-
-    ```
-
-- single var pattern:
-
-    ```
-    // single var pattern:
-    var myVar1 = 1,
-        anotherVar2 = 'test',
-        andAnotherVar = true;
+    // single let pattern:
+    let mylet1 = 1,
+        anotherlet2 = 'test',
+        andAnotherlet = true
 
     // is this cool?
-    var myVar1 = 1,
-        anotherVar2 = 'test' // oops, Automatic Semicolon Insertion just popped a ; on this...
-        andAnotherVar = true; // is now global
+    let mylet1 = 1,
+        anotherlet2 = 'test' // oops, Automatic Semicolon Insertion just popped a ; on this...
+        andAnotherlet = true; // is now global
 
     // better?
-    var a = 1
+    let a = 1
       , b = 2
       , sum = a + b
       , myobject = {}
       , i
-      , j;
+      , j
 
-    // good old dependable multiple var pattern:
-    var myVar = 1;
-    var anotherVat2 = 'test';
-    var andAnotherVar = true;
+    // good old dependable multiple let pattern:
+    let myLet = 1
+    let anotherLet2 = 'test'
+    let andAnotherLet = true
 
     ```
+
+### Don't use semi-colons - javascript doesn't require them
 
 ### Avoid excessive function arguments
 
@@ -676,12 +640,12 @@ If a function requires more than three arguments, considering refactoring to use
 
 ```
 // bad
-var myFunction1 = function(arg1, arg2, arg3, arg4) {}
+let myFunction1 = function(arg1, arg2, arg3, arg4) {}
 
-myFunction1('firstArgument', argument2, true, 'My Third Argument');
+myFunction1('firstArgument', argument2, true, 'My Third Argument')
 
 // good
-var myFunction2 = function(config) {}
+let myFunction2 = function(config) {}
 
 myFunction2({
   arg1: 'firstArgument',
@@ -705,29 +669,9 @@ Although we can infer that `_oA` is a private object, we know nothing about what
 
 Use descriptive yet concise variable names for long-lived variables.
 
-Avoid using what might be considered reserved variable names out of context.  For example, `e` in jQuery is considered an event object.  Don't use it for anything else.
+Avoid using what might be considered reserved variable names out of context.  For example, `e` in javascript is considered an event object.  Don't use it for anything else.
 
 For temporary variables, i.e. those which are used to store short-lived values, e.g. variables used for iteration, it is ok to use non-descriptive names, e.g. `i, j, k`.
-
-### Namespace events
-
-jQuery supports namespaced events.  In order to make your scripts play nicely with other libraries, ensure any events you bind to have a namespace so that if you need to unbind it, it won't affect any other scripts that use the same event.
-
-```
-// not cool...
-$(window).bind('resize', function(e) {
-  // do something
-});
-
-$(window).unbind('resize');
-
-// you're ok...
-$(window).bind('resize.myPlugin', function(e) {
-  // do something
-});
-
-$(window).unbind('resize.myPlugin');
-```
 
 ### Commenting
 
@@ -742,7 +686,7 @@ Comment your code.  There are two reasons why you should comment:
 
     // I am a nicely formatted brief one-line comment
 
-    for ( var i=0; i<10; i++); // uh-oh don't put comments at the end of lines
+    for ( let i=0; i<10; i++); // uh-oh don't put comments at the end of lines
 
     /* ===================================================
      * uh-oh don't make up your own comment format
@@ -771,107 +715,8 @@ Comment your code.  There are two reasons why you should comment:
      * Event handler to close the menu
      * @param {Event} e jQuery event object
      */
-    var myFunction = function(e) {};
+    var myFunction = function(e) {}
     ```
-
-### Localisation
-
-Even if the project doesn't require it at the point at which you are working on it, make sure you code is extensible - if you need to include text strings in Javascript make sure they are either:
-
-- wrapped in a localisation function:
-
-    ```
-    // localisation function
-    _t('Click me')
-
-    /**
-     * Future proofing
-     */
-    function _t(str) {
-      return str;
-    }
-
-    // some time in the future...
-    function _t(str) {
-      var languages = {
-        "fr": {
-          'Click me' => 'cliquez sur moi'
-        }
-      };
-
-      return language[currentLanguage][str];
-    }
-
-    ```
-
-- or defined in a configuration object:
-
-    ```
-    $.widget('formToggle', {
-
-      options: {
-        'btnLabel': 'Click Me'
-      };
-
-      ...
-
-      _create: function() {
-        $('.button').val(this.options.btnLabel);
-      }
-
-      ...
-
-    })(jQuery);
-
-    ...
-
-    $('form').formToggle({
-      'btnLabel': 'cliquez sur moi' // i'm French now.
-    });
-
-    ```
-
-### Plugin Development
-
-Break down Javascript into components implemented (where appropriate) as jQuery plugins.
-
-The benefits of breaking down larger JS projects into smaller 'single-purpose' chunks are well known, but include the promotion of maintainability as it is easier to understand and update a small piece of single purpose code.
-
-Using discrete jQuery plugins to achieve this allows us to encapsulate functionality and abstract away the implementation so other developers don’t necessarily need to know how it works, only how to use it. This allows us to better test the functionality in isolation and to structure  projects.
-
-We suggest the use of jQuery UI's [‘Widget Factory’](http://api.jqueryui.com/jQuery.widget/) plugin component as the basis of plugins.
-
-It gives us a well defined and consistent API to work to, and being stateful, allows us to better deal with the challenges of modern website development.
-
-- Prefix the filename of your plugin with `jquery.cx` e.g. `jquery.cx.responsive-image.js`.
-
-### Avoid HTML in JS
-
-Long strings of text and HTML in code are hard to maintain and understand.  Considering using a template library such as Moustache.
-
-```
-// configuration object
-options: {
-  'errorTemplate': '<div class="error-message"><p>{{error-message}}</p></div>
-}
-
-```
-
-Where possible, put templates in HTML or seperate files for a clear separation of behaviour and presentation:
-
-```
-<script id="entry-template" type="text/x-handlebars-template">
-  <div class="error-message">
-    <strong>The following errors have occurred:</strong>
-    <p>{{error-message}}</p>
-  </div>
-</script>
-
-$('form').validationPlugin({
-  'errorTemplate': $('#entry-template').html()
-});
-
-```
 
 ### Break code into separate lines
 
@@ -881,7 +726,7 @@ Where applicable, ensure code is written on separate lines to aid Git diffs and 
     page.setViewport({
       width: 1280,
       height: 1024
-    });
+    })
 
      // not so good
-    page.setViewport({width: 1280, height: 1024});
+    page.setViewport({width: 1280, height: 1024})
