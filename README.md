@@ -54,6 +54,8 @@ There are some general things we can do in front-end development:
 
 - Make sure, as much as possible, you have tested your code on a reasonable number of devices so you can catch problems before you commit to the repo.
 
+- Validate and lint code where this is available - code reviewers should not have to pick up basic JSHint or JSCS errors. (_The CX standard config files for these are in this repository_)
+
 ### You are producing source code
 
 Due to the size of most webdev projects that cxpartners undertakes, and the processes and methodologies we adhere to, there will always be a build process that takes source code and generates built artefacts.
